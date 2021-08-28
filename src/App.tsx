@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import PixelBox from 'components/PixelCanvas';
+import PixelCanvas from 'components/PixelCanvas';
 import { makePixelArray } from 'util/makePixelArray';
 
 export default function App() {
@@ -13,7 +13,7 @@ export default function App() {
   return (
     <Container>
       <Title>Pixel Art</Title>
-      <PixelBox pixelArray={pixelArray} size={SIZE} pixelQt={pixelQt} />
+      <PixelCanvas pixelArray={pixelArray} size={SIZE} pixelQt={pixelQt} />
     </Container>
   );
 }
