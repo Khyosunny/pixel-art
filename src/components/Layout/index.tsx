@@ -1,3 +1,5 @@
+import Navbar from 'components/Navbar';
+import { black } from 'styles/colors';
 import styled from 'styled-components';
 
 interface LayoutProps {
@@ -5,11 +7,24 @@ interface LayoutProps {
 }
 
 export default function Layout({ children }: LayoutProps) {
-  return <Container>{children}</Container>;
+  return (
+    <Container>
+      <Navbar />
+      <Content>{children}</Content>
+    </Container>
+  );
 }
 
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: #272727;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${black[600]};
+`;
+
+const Content = styled.div`
+  width: 100%;
+  height: 100%;
 `;
