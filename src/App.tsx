@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import PixelCanvas from 'components/PixelCanvas';
-import { createPixelArray } from 'util/createPixelArray';
+import usePixel from 'hooks/usePixel';
 
 export default function App() {
   const SIZE = 500;
   const [pixelQt, setPixelQt] = useState(16);
-  const [pixelArray, setPixelArray] = useState(createPixelArray(pixelQt));
+  const { pixelArray, setPixelArray } = usePixel(pixelQt);
 
   console.log('pixelArray: ', pixelArray);
 
@@ -20,7 +20,6 @@ export default function App() {
 const Container = styled.div`
   height: 100%;
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
 `;
