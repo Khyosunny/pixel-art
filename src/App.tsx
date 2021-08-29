@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import PixelCanvas from 'components/PixelCanvas';
-import { makePixelArray } from 'util/makePixelArray';
+import { createPixelArray } from 'util/makePixelArray';
 
 export default function App() {
   const SIZE = 500;
   const [pixelQt, setPixelQt] = useState(16);
-  const [pixelArray, setPixelArray] = useState(makePixelArray(pixelQt));
+  const [pixelArray, setPixelArray] = useState(createPixelArray(pixelQt));
 
   console.log('pixelArray: ', pixelArray);
 

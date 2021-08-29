@@ -1,6 +1,6 @@
 import { ODD_COLOR, EVEN_COLOR } from 'styles/colors';
 
-const makeTransparentPattern = (length: number) => {
+const createTransparentPattern = (length: number) => {
   const oddArray: string[] = [];
   const evenArray: string[] = [];
   for (let i = 0; i < length; i++) {
@@ -15,8 +15,8 @@ const makeTransparentPattern = (length: number) => {
   return { oddArray, evenArray };
 };
 
-export const makePixelArray = (length: number) => {
-  const { oddArray, evenArray } = makeTransparentPattern(length);
+export const createPixelArray = (length: number) => {
+  const { oddArray, evenArray } = createTransparentPattern(length);
   const pixelArray: string[][] = [];
 
   for (let i = 0; i < length; i++) {
