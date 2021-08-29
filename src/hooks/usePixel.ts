@@ -1,15 +1,83 @@
-import { useState } from 'react';
-import { createPixelArray } from 'util/createPixelArray';
+import { useState, useRef, useCallback } from 'react';
 
-interface returnType {
-  pixelArray: string[][];
-  setPixelArray: React.Dispatch<React.SetStateAction<string[][]>>;
-}
+export default function usePixel(color: string, PIXEL_SIZE: number) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isDrawing, setIsDrawing] = useState(false);
+  const getMousePosition = useCallback(
+    (e) => {
+      let x = Math.floor(e.offsetX / PIXEL_SIZE) * PIXEL_SIZE;
+      let y = Math.floor(e.offsetY / PIXEL_SIZE) * PIXEL_SIZE;
 
-export default function usePixel(pixelQt: number): returnType {
-  const [pixelArray, setPixelArray] = useState<string[][]>(
-    createPixelArray(pixelQt)
+      return {
+        x,
+        y,
+      };
+    },
+    [PIXEL_SIZE]
   );
 
-  return { pixelArray, setPixelArray };
+  const drawPixel = useCallback(
+    (x, y) => {
+      if (!canvasRef.current) {
+        return;
+      }
+      const canvas: HTMLCanvasElement = canvasRef.current;
+      const context = canvas.getContext('2d');
+      if (context) {
+        context.fillStyle = color;
+        // context.lineWidth = 1;
+        // context.strokeStyle = '#272727';
+        context.fillRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
+        // context.fillRect(x + 1, y + 1, PIXEL_SIZE - 2, PIXEL_SIZE - 2);
+      }
+    },
+    [color, PIXEL_SIZE]
+  );
+
+  const startDrawing = useCallback(
+    (e) => {
+      const position = getMousePosition(e);
+      if (position) {
+        console.log('start', position);
+        setIsDrawing(true);
+      }
+    },
+    [getMousePosition]
+  );
+
+  const drawing = useCallback(
+    (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (isDrawing) {
+        const position = getMousePosition(e);
+        if (position) {
+          drawPixel(position.x, position.y);
+        }
+      }
+    },
+    [isDrawing, drawPixel, getMousePosition]
+  );
+
+  const clickDrawing = useCallback(
+    (e) => {
+      const position = getMousePosition(e);
+      if (position) {
+        drawPixel(position.x, position.y);
+      }
+    },
+    [getMousePosition, drawPixel]
+  );
+
+  const exitDrawing = useCallback(() => {
+    setIsDrawing(false);
+  }, []);
+
+  return {
+    canvasRef,
+    startDrawing,
+    drawing,
+    clickDrawing,
+    exitDrawing,
+  };
 }
