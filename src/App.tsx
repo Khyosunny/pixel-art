@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import Palette from 'components/Palette';
 import useColor from 'hooks/useColor';
-import usePixel from 'hooks/usePixel';
+import PixelCanvas from 'components/PixelCanvas';
 
 export default function App() {
   const [pixelQt, setPixelQt] = useState(16);
@@ -13,9 +13,8 @@ export default function App() {
   );
   console.log(Math.floor(CANVAS_SIZE / pixelQt), PIXEL_SIZE);
   const { color, handleColorChange } = useColor();
-  const { canvasRef, startDrawing, drawing, clickDrawing, exitDrawing } =
-    usePixel(color, PIXEL_SIZE);
 
+  // 그리드
   // useEffect(() => {
   //   if (!canvasRef.current) {
   //     return;
@@ -38,57 +37,23 @@ export default function App() {
   //   }
   // }, [canvasRef, PIXEL_SIZE]);
 
-  useEffect(() => {
-    if (!canvasRef.current) {
-      return;
-    }
-    const canvas: HTMLCanvasElement = canvasRef.current;
-    canvas.addEventListener('mousedown', startDrawing);
-    canvas.addEventListener('mousemove', drawing);
-    canvas.addEventListener('click', clickDrawing);
-    canvas.addEventListener('mouseup', exitDrawing);
-
-    return () => {
-      canvas.removeEventListener('mousedown', startDrawing);
-      canvas.removeEventListener('mousemove', drawing);
-      canvas.removeEventListener('click', clickDrawing);
-      canvas.removeEventListener('mouseup', exitDrawing);
-    };
-  }, [canvasRef, startDrawing, drawing, exitDrawing, clickDrawing]);
-
   return (
     <Container>
-      <canvas ref={canvasRef} width={CANVAS_SIZE} height={CANVAS_SIZE} />
+      <PixelCanvas
+        color={color}
+        PIXEL_SIZE={PIXEL_SIZE}
+        CANVAS_SIZE={CANVAS_SIZE}
+      />
       <Palette color={color} handleColorChange={handleColorChange} />
     </Container>
   );
 }
 
 const Container = styled.div`
+  background-color: pink;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  canvas {
-    background-color: #eee;
-    background-image: linear-gradient(
-        45deg,
-        #ddd 25%,
-        transparent 25%,
-        transparent 75%,
-        #ddd 75%,
-        #ddd
-      ),
-      linear-gradient(
-        45deg,
-        #ddd 25%,
-        transparent 25%,
-        transparent 75%,
-        #ddd 75%,
-        #ddd
-      );
-    background-size: 70px 70px;
-    background-position: 0 0, 35px 35px;
-  }
 `;

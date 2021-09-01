@@ -19,7 +19,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: ${black[400]}; */
+  background-color: ${black[400]};
 `;
 
 const Nav = styled.nav`
