@@ -5,37 +5,24 @@ import useColor from 'hooks/useColor';
 import PixelCanvas from 'components/PixelCanvas';
 
 export default function App() {
-  const [pixelQt, setPixelQt] = useState(16);
-  const CANVAS_SIZE = useMemo(() => 560, []);
+  const [multiply, setMultiply] = useState(8);
+  const [pixelQt, setPixelQt] = useState(37);
+  const CANVAS_SIZE = useMemo(() => {
+    let defaultSize = 560;
+    if (defaultSize % pixelQt === 0) {
+      return defaultSize;
+    } else {
+      defaultSize = Math.floor(defaultSize / pixelQt) * pixelQt;
+      return defaultSize;
+    }
+  }, [pixelQt]);
+
   const PIXEL_SIZE = useMemo(
     () => CANVAS_SIZE / pixelQt,
     [CANVAS_SIZE, pixelQt]
   );
   console.log(Math.floor(CANVAS_SIZE / pixelQt), PIXEL_SIZE);
   const { color, handleColorChange } = useColor();
-
-  // 그리드
-  // useEffect(() => {
-  //   if (!canvasRef.current) {
-  //     return;
-  //   }
-  //   const canvas: HTMLCanvasElement = canvasRef.current;
-  //   const context = canvas.getContext('2d');
-  //   if (context) {
-  //     context.lineWidth = 1;
-  //     context.strokeStyle = '#272727';
-  //     for (let x = 0; x < PIXEL_SIZE; x++) {
-  //       for (let y = 0; y < PIXEL_SIZE; y++) {
-  //         context.strokeRect(
-  //           PIXEL_SIZE * x,
-  //           PIXEL_SIZE * y,
-  //           PIXEL_SIZE,
-  //           PIXEL_SIZE
-  //         );
-  //       }
-  //     }
-  //   }
-  // }, [canvasRef, PIXEL_SIZE]);
 
   return (
     <Container>
