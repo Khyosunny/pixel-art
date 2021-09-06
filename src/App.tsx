@@ -6,15 +6,26 @@ import PixelCanvas from 'components/PixelCanvas';
 
 export default function App() {
   const [multiply, setMultiply] = useState(8);
-  const [pixelQt, setPixelQt] = useState(37);
+  const [pixelQt, setPixelQt] = useState(90);
   const CANVAS_SIZE = useMemo(() => {
     let defaultSize = 560;
-    if (defaultSize % pixelQt === 0) {
-      return defaultSize;
-    } else {
-      defaultSize = Math.floor(defaultSize / pixelQt) * pixelQt;
-      return defaultSize;
+    if (pixelQt < 50) {
+      if (defaultSize % pixelQt === 0) {
+        return defaultSize;
+      } else {
+        defaultSize = Math.floor(defaultSize / pixelQt) * pixelQt;
+        return defaultSize;
+      }
+    } else if (50 < pixelQt && pixelQt < 100) {
+      defaultSize = 1000;
+      if (defaultSize % pixelQt === 0) {
+        return defaultSize;
+      } else {
+        defaultSize = Math.floor(defaultSize / pixelQt) * pixelQt;
+        return defaultSize;
+      }
     }
+    return defaultSize;
   }, [pixelQt]);
 
   const PIXEL_SIZE = useMemo(
