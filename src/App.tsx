@@ -16,14 +16,6 @@ export default function App() {
         defaultSize = Math.floor(defaultSize / pixelQt) * pixelQt;
         return defaultSize;
       }
-    } else if (50 < pixelQt && pixelQt < 100) {
-      defaultSize = 1000;
-      if (defaultSize % pixelQt === 0) {
-        return defaultSize;
-      } else {
-        defaultSize = Math.floor(defaultSize / pixelQt) * pixelQt;
-        return defaultSize;
-      }
     }
     return defaultSize;
   }, [pixelQt]);
