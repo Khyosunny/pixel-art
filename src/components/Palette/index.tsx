@@ -1,5 +1,5 @@
 // import { TwitterPicker, CompactPicker, HuePicker } from 'react-color';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { black } from 'styles/colors';
 import MenuTitle from 'components/MenuTitle';
 
@@ -84,6 +84,7 @@ export default function Palette({ color, handleColorChange }: PaletteProps) {
     <ColorRect
       key={index}
       pColor={pColor}
+      selected={pColor === color}
       onClick={() => handleColorChange(pColor)}
     />
   ));
@@ -92,13 +93,13 @@ export default function Palette({ color, handleColorChange }: PaletteProps) {
     <Container>
       <MenuTitle title="Palette" />
       <PickerContainer>{colors}</PickerContainer>
-      {/* <HuePicker color={color} onChange={handleColorChange} /> */}
     </Container>
   );
 }
 
 interface StyleProps {
   pColor?: string;
+  selected?: boolean;
 }
 
 const Container = styled.div`
@@ -132,7 +133,61 @@ const PickerContainer = styled.div`
 const ColorRect = styled.div<StyleProps>`
   width: 30px;
   height: 30px;
-  border-left: 1px solid ${black[900]};
-  border-bottom: 1px solid ${black[900]};
+  border: 1px solid ${black[600]};
   background-color: ${(props) => props.pColor};
+  position: relative;
+
+  ${(props) =>
+    props.selected &&
+    css`
+      &::after {
+        content: '';
+        overflow: hidden;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 18px;
+        height: 18px;
+        border: 4px solid #fff;
+      }
+
+      &::before {
+        content: '';
+        overflow: hidden;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 26px;
+        height: 26px;
+        border: 2px solid ${black[600]};
+      }
+    `}
+
+  &:hover {
+    &::after {
+      content: '';
+      overflow: hidden;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 18px;
+      height: 18px;
+      border: 4px solid #fff;
+    }
+
+    &::before {
+      content: '';
+      overflow: hidden;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 26px;
+      height: 26px;
+      border: 2px solid ${black[600]};
+    }
+  }
 `;
