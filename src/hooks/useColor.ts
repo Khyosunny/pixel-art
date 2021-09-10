@@ -4,8 +4,8 @@ import { ColorResult } from 'react-color';
 export default function useColor() {
   const [color, setColor] = useState('#000');
 
-  const handleColorChange = useCallback((color: ColorResult) => {
-    setColor(color.hex);
+  const handleColorChange = useCallback((color: string) => {
+    setColor(color);
   }, []);
 
   return { color, handleColorChange };

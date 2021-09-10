@@ -6,10 +6,10 @@ import PixelCanvas from 'components/PixelCanvas';
 
 export default function App() {
   const [multiply, setMultiply] = useState(8);
-  const [pixelQt, setPixelQt] = useState(90);
+  const [pixelQt, setPixelQt] = useState(64);
   const CANVAS_SIZE = useMemo(() => {
     let defaultSize = 560;
-    if (pixelQt < 50) {
+    if (pixelQt <= 64) {
       if (defaultSize % pixelQt === 0) {
         return defaultSize;
       } else {
@@ -40,10 +40,10 @@ export default function App() {
 }
 
 const Container = styled.div`
-  background-color: pink;
+  /* background-color: pink; */
   height: 100%;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
 `;

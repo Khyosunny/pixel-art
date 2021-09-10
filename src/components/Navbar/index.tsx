@@ -15,11 +15,11 @@ export default function Navbar() {
 
 const Container = styled.div`
   width: 100%;
-  height: 80px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${black[400]};
+  background-color: ${black[600]};
 `;
 
 const Nav = styled.nav`
