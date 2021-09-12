@@ -91,13 +91,16 @@ export default function Palette({ color, handleColorChange }: PaletteProps) {
 
   return (
     <Container>
-      <MenuTitle title="Palette" />
+      {/* <MenuTitle title="Palette" /> */}
+      <CurrentColor color={color} />
+      <p>{color}</p>
       <PickerContainer>{colors}</PickerContainer>
     </Container>
   );
 }
 
 interface StyleProps {
+  color?: string;
   pColor?: string;
   selected?: boolean;
 }
@@ -108,6 +111,13 @@ const Container = styled.div`
   align-items: center;
   width: 285px;
   background-color: ${black[400]};
+`;
+
+const CurrentColor = styled.div<StyleProps>`
+  margin: 10px 0;
+  width: 60px;
+  height: 60px;
+  background-color: ${(props) => props.color};
 `;
 
 const PickerContainer = styled.div`
