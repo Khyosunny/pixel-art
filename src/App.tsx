@@ -6,7 +6,7 @@ import PixelCanvas from 'components/PixelCanvas';
 
 export default function App() {
   const [multiply, setMultiply] = useState(8);
-  const [pixelQt, setPixelQt] = useState(64);
+  const [pixelQt, setPixelQt] = useState(32);
   const CANVAS_SIZE = useMemo(() => {
     let defaultSize = 560;
     if (pixelQt <= 64) {

@@ -1,4 +1,4 @@
-// import { TwitterPicker, CompactPicker, HuePicker } from 'react-color';
+// import { TwitterPicker, CompactPicker, HuePicker, PhotoshopPicker } from 'react-color';
 import styled, { css } from 'styled-components';
 import { black } from 'styles/colors';
 import MenuTitle from 'components/MenuTitle';
@@ -92,8 +92,9 @@ export default function Palette({ color, handleColorChange }: PaletteProps) {
   return (
     <Container>
       {/* <MenuTitle title="Palette" /> */}
-      <CurrentColor color={color} />
-      <p>{color}</p>
+      <CurrentColor color={color}>
+        <ColorText>{color}</ColorText>
+      </CurrentColor>
       <PickerContainer>{colors}</PickerContainer>
     </Container>
   );
@@ -109,15 +110,26 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 285px;
+  padding: 5px;
   background-color: ${black[400]};
 `;
 
 const CurrentColor = styled.div<StyleProps>`
-  margin: 10px 0;
-  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  width: 100%;
   height: 60px;
   background-color: ${(props) => props.color};
+`;
+
+const ColorText = styled.p`
+  color: #fff;
+  font-weight: 600;
+  font-size: 24px;
+  text-shadow: -1px 0 ${black[400]}, 0 1px ${black[400]}, 1px 0 ${black[400]},
+    0 -1px ${black[400]};
 `;
 
 const PickerContainer = styled.div`

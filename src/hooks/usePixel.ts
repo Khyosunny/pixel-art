@@ -28,6 +28,7 @@ export default function usePixel(color: string, PIXEL_SIZE: number) {
         // context.lineWidth = 1;
         // context.strokeStyle = '#272727';
         context.fillRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
+        console.log(context.getImageData(x, y, 1, 1).data);
         // context.fillRect(x + 1, y + 1, PIXEL_SIZE - 2, PIXEL_SIZE - 2);
       }
     },
