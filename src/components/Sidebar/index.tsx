@@ -19,6 +19,7 @@ export default function Sidebar({ color, handleColorChange }: SidebarProps) {
 
 const Container = styled.div`
   width: 280px;
+  min-width: 280px;
   height: 100%;
   background-color: ${black[500]};
   display: flex;

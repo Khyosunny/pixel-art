@@ -29,11 +29,13 @@ export default function App() {
 
   return (
     <Container>
-      <PixelCanvas
-        color={color}
-        PIXEL_SIZE={PIXEL_SIZE}
-        CANVAS_SIZE={CANVAS_SIZE}
-      />
+      <CanvasContainer>
+        <PixelCanvas
+          color={color}
+          PIXEL_SIZE={PIXEL_SIZE}
+          CANVAS_SIZE={CANVAS_SIZE}
+        />
+      </CanvasContainer>
       <Sidebar color={color} handleColorChange={handleColorChange} />
     </Container>
   );
@@ -47,4 +49,12 @@ const Container = styled.div`
   align-items: center;
   /* background-color: pink; */
   /* flex-direction: column; */
+`;
+
+const CanvasContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

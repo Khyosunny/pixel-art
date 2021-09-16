@@ -139,7 +139,6 @@ const PickerContainer = styled.div`
   width: 100%;
   height: 150px;
   overflow-y: scroll;
-  background-color: pink;
 
   &::-webkit-scrollbar {
     width: 10px;
