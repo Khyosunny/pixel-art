@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 import { black } from 'styles/colors';
-// import { SaveButton } from 'components/Buttons';
 
 export default function Navbar() {
   return (
     <Container>
       <Nav>
         <Title>Pixel Art</Title>
-        {/* <SaveButton /> */}
       </Nav>
     </Container>
   );
@@ -19,7 +17,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${black[600]};
+  background-color: ${black[500]};
 `;
 
 const Nav = styled.nav`

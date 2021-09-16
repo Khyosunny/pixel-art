@@ -107,11 +107,12 @@ interface StyleProps {
 }
 
 const Container = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5px;
-  background-color: ${black[400]};
+  background-color: ${black[600]};
+  padding: 5px 0;
 `;
 
 const CurrentColor = styled.div<StyleProps>`
@@ -135,10 +136,10 @@ const ColorText = styled.p`
 const PickerContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 280px;
+  width: 100%;
   height: 150px;
   overflow-y: scroll;
-  background-color: ${black[400]};
+  background-color: pink;
 
   &::-webkit-scrollbar {
     width: 10px;

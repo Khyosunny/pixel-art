@@ -1,8 +1,8 @@
 import { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
-import Palette from 'components/Palette';
 import useColor from 'hooks/useColor';
 import PixelCanvas from 'components/PixelCanvas';
+import Sidebar from 'components/Sidebar';
 
 export default function App() {
   const [multiply, setMultiply] = useState(8);
@@ -34,16 +34,17 @@ export default function App() {
         PIXEL_SIZE={PIXEL_SIZE}
         CANVAS_SIZE={CANVAS_SIZE}
       />
-      <Palette color={color} handleColorChange={handleColorChange} />
+      <Sidebar color={color} handleColorChange={handleColorChange} />
     </Container>
   );
 }
 
 const Container = styled.div`
-  /* background-color: pink; */
+  width: 100%;
   height: 100%;
   display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  /* background-color: pink; */
+  /* flex-direction: column; */
 `;

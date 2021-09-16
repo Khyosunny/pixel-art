@@ -21,7 +21,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${black[600]};
+  background-color: ${black[700]};
 `;
 
 const Content = styled.div`
