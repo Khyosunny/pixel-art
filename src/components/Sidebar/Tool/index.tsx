@@ -4,7 +4,7 @@ import PencilIcon from 'assets/icons/pencil_white_icon.png';
 import EraserIcon from 'assets/icons/eraser_white_icon.png';
 import DropperIcon from 'assets/icons/eyedropper_white_icon.png';
 
-const toolsData = [
+const TOOLS_DATA = [
   {
     id: 0,
     name: 'pencil',
@@ -29,7 +29,7 @@ export default function Tool() {
     setSelectedIndex(index);
   }, []);
 
-  const tools = toolsData.map((tool, index) => (
+  const tools = TOOLS_DATA.map((tool, index) => (
     <Button
       onClick={() => handleToolClick(index)}
       key={tool.id}
