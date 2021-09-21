@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { black } from 'styles/colors';
-import Palette from 'components/Palette';
+import Palette from 'components/Sidebar/Palette';
+import Tool from 'components/Sidebar/Tool';
 import { SaveButton } from 'components/Buttons';
 
 interface SidebarProps {
@@ -11,6 +12,7 @@ interface SidebarProps {
 export default function Sidebar({ color, handleColorChange }: SidebarProps) {
   return (
     <Container>
+      <Tool />
       <Palette color={color} handleColorChange={handleColorChange} />
       <SaveButton />
     </Container>
