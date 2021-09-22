@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
 
-export default function SaveButton() {
+interface SaveButtonProps {
+  saveCanvasImg: () => void;
+}
+
+export default function SaveButton({ saveCanvasImg }: SaveButtonProps) {
   return (
-    <Button>
+    <Button onClick={saveCanvasImg}>
       <SaveAltIcon />
       Save
     </Button>

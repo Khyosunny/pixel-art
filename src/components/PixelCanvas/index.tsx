@@ -3,6 +3,7 @@ import usePixel from 'hooks/usePixel';
 import styled from 'styled-components';
 
 interface PixelCanvasProps {
+  canvasRef: React.RefObject<HTMLCanvasElement>;
   color: string;
   handleColorChange: (color: string) => void;
   PIXEL_SIZE: number;
@@ -10,14 +11,20 @@ interface PixelCanvasProps {
   selectedTool: string;
 }
 export default function PixelCanvas({
+  canvasRef,
   color,
   handleColorChange,
   PIXEL_SIZE,
   CANVAS_SIZE,
   selectedTool,
 }: PixelCanvasProps) {
-  const { canvasRef, startDrawing, drawing, clickDrawing, exitDrawing } =
-    usePixel(color, PIXEL_SIZE, selectedTool, handleColorChange);
+  const { startDrawing, drawing, clickDrawing, exitDrawing } = usePixel(
+    canvasRef,
+    color,
+    PIXEL_SIZE,
+    selectedTool,
+    handleColorChange
+  );
 
   useEffect(() => {
     if (!canvasRef.current) {

@@ -1,13 +1,13 @@
-import { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { rgbToHex } from 'util/rgbToHex';
 
 export default function usePixel(
+  canvasRef: React.RefObject<HTMLCanvasElement>,
   color: string,
   PIXEL_SIZE: number,
   selectedTool: string,
   handleColorChange: (color: string) => void
 ) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const getMousePosition = useCallback(
     (e) => {

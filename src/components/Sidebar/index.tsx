@@ -10,6 +10,7 @@ interface SidebarProps {
   handleColorChange: (color: string) => void;
   selectedTool: string;
   setSelectedTool: React.Dispatch<React.SetStateAction<string>>;
+  saveCanvasImg: () => void;
 }
 
 export default function Sidebar({
@@ -17,12 +18,13 @@ export default function Sidebar({
   handleColorChange,
   selectedTool,
   setSelectedTool,
+  saveCanvasImg,
 }: SidebarProps) {
   return (
     <Container>
       <Tool selectedTool={selectedTool} setSelectedTool={setSelectedTool} />
       <Palette color={color} handleColorChange={handleColorChange} />
-      <SaveButton />
+      <SaveButton saveCanvasImg={saveCanvasImg} />
     </Container>
   );
 }

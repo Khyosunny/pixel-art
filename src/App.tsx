@@ -1,10 +1,11 @@
-import { useState, useMemo } from 'react';
+import { useCallback, useState, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import useColor from 'hooks/useColor';
 import PixelCanvas from 'components/PixelCanvas';
 import Sidebar from 'components/Sidebar';
 
 export default function App() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [selectedTool, setSelectedTool] = useState('pencil');
   const [pixelQt, setPixelQt] = useState(32);
   const CANVAS_SIZE = useMemo(() => {
@@ -24,13 +25,31 @@ export default function App() {
     () => CANVAS_SIZE / pixelQt,
     [CANVAS_SIZE, pixelQt]
   );
-  console.log(Math.floor(CANVAS_SIZE / pixelQt), PIXEL_SIZE);
+  console.log(
+    Math.floor(CANVAS_SIZE / pixelQt),
+    PIXEL_SIZE,
+    'CANVAS_SIZE: ',
+    CANVAS_SIZE
+  );
   const { color, handleColorChange } = useColor();
+
+  const saveCanvasImg = useCallback(() => {
+    if (canvasRef.current) {
+      const dataURL = canvasRef.current.toDataURL();
+      const a = document.createElement('a');
+      a.href = dataURL;
+      a.download = 'untitled';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+  }, []);
 
   return (
     <Container>
       <CanvasContainer>
         <PixelCanvas
+          canvasRef={canvasRef}
           color={color}
           handleColorChange={handleColorChange}
           PIXEL_SIZE={PIXEL_SIZE}
@@ -43,6 +62,7 @@ export default function App() {
         handleColorChange={handleColorChange}
         selectedTool={selectedTool}
         setSelectedTool={setSelectedTool}
+        saveCanvasImg={saveCanvasImg}
       />
     </Container>
   );
