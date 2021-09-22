@@ -51,7 +51,6 @@ export default function usePixel(
     (e) => {
       const position = getMousePosition(e);
       if (position) {
-        console.log('start', position);
         setIsDrawing(true);
       }
     },

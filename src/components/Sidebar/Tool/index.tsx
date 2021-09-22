@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import PencilIcon from 'assets/icons/pencil_white_icon.png';
 import EraserIcon from 'assets/icons/eraser_white_icon.png';

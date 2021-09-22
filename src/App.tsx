@@ -5,7 +5,6 @@ import PixelCanvas from 'components/PixelCanvas';
 import Sidebar from 'components/Sidebar';
 
 export default function App() {
-  // const [multiply, setMultiply] = useState(8);
   const [selectedTool, setSelectedTool] = useState('pencil');
   const [pixelQt, setPixelQt] = useState(32);
   const CANVAS_SIZE = useMemo(() => {
@@ -55,8 +54,6 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background-color: pink; */
-  /* flex-direction: column; */
 `;
 
 const CanvasContainer = styled.div`
