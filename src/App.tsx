@@ -1,11 +1,12 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import styled from 'styled-components';
 import useColor from 'hooks/useColor';
 import PixelCanvas from 'components/PixelCanvas';
 import Sidebar from 'components/Sidebar';
 
 export default function App() {
-  const [multiply, setMultiply] = useState(8);
+  // const [multiply, setMultiply] = useState(8);
+  const [selectedTool, setSelectedTool] = useState('pencil');
   const [pixelQt, setPixelQt] = useState(32);
   const CANVAS_SIZE = useMemo(() => {
     let defaultSize = 560;
@@ -32,11 +33,18 @@ export default function App() {
       <CanvasContainer>
         <PixelCanvas
           color={color}
+          handleColorChange={handleColorChange}
           PIXEL_SIZE={PIXEL_SIZE}
           CANVAS_SIZE={CANVAS_SIZE}
+          selectedTool={selectedTool}
         />
       </CanvasContainer>
-      <Sidebar color={color} handleColorChange={handleColorChange} />
+      <Sidebar
+        color={color}
+        handleColorChange={handleColorChange}
+        selectedTool={selectedTool}
+        setSelectedTool={setSelectedTool}
+      />
     </Container>
   );
 }

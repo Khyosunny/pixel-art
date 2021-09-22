@@ -1,6 +1,12 @@
 import { useState, useRef, useCallback } from 'react';
+import { rgbToHex } from 'util/rgbToHex';
 
-export default function usePixel(color: string, PIXEL_SIZE: number) {
+export default function usePixel(
+  color: string,
+  PIXEL_SIZE: number,
+  selectedTool: string,
+  handleColorChange: (color: string) => void
+) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const getMousePosition = useCallback(
@@ -24,15 +30,21 @@ export default function usePixel(color: string, PIXEL_SIZE: number) {
       const canvas: HTMLCanvasElement = canvasRef.current;
       const context = canvas.getContext('2d');
       if (context) {
-        context.fillStyle = color;
-        // context.lineWidth = 1;
-        // context.strokeStyle = '#272727';
-        context.fillRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
-        console.log(context.getImageData(x, y, 1, 1).data);
-        // context.fillRect(x + 1, y + 1, PIXEL_SIZE - 2, PIXEL_SIZE - 2);
+        if (selectedTool === 'pencil') {
+          context.fillStyle = color;
+          context.fillRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
+        } else if (selectedTool === 'eraser') {
+          context.clearRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
+        } else if (selectedTool === 'dropper') {
+          const rgb = context.getImageData(x, y, 1, 1).data;
+          const hex =
+            '#' + ('000000' + rgbToHex(rgb[0], rgb[1], rgb[2])).slice(-6);
+          console.log('hex', hex);
+          handleColorChange(hex);
+        }
       }
     },
-    [color, PIXEL_SIZE]
+    [color, PIXEL_SIZE, selectedTool, handleColorChange]
   );
 
   const startDrawing = useCallback(

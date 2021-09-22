@@ -4,16 +4,20 @@ import styled from 'styled-components';
 
 interface PixelCanvasProps {
   color: string;
+  handleColorChange: (color: string) => void;
   PIXEL_SIZE: number;
   CANVAS_SIZE: number;
+  selectedTool: string;
 }
 export default function PixelCanvas({
   color,
+  handleColorChange,
   PIXEL_SIZE,
   CANVAS_SIZE,
+  selectedTool,
 }: PixelCanvasProps) {
   const { canvasRef, startDrawing, drawing, clickDrawing, exitDrawing } =
-    usePixel(color, PIXEL_SIZE);
+    usePixel(color, PIXEL_SIZE, selectedTool, handleColorChange);
 
   useEffect(() => {
     if (!canvasRef.current) {

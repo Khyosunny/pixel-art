@@ -22,18 +22,24 @@ const TOOLS_DATA = [
   },
 ];
 
-export default function Tool() {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+interface ToolProps {
+  selectedTool: string;
+  setSelectedTool: React.Dispatch<React.SetStateAction<string>>;
+}
 
-  const handleToolClick = useCallback((index: number) => {
-    setSelectedIndex(index);
-  }, []);
+export default function Tool({ selectedTool, setSelectedTool }: ToolProps) {
+  const handleToolClick = useCallback(
+    (toolName: string) => {
+      setSelectedTool(toolName);
+    },
+    [setSelectedTool]
+  );
 
-  const tools = TOOLS_DATA.map((tool, index) => (
+  const tools = TOOLS_DATA.map((tool) => (
     <Button
-      onClick={() => handleToolClick(index)}
+      onClick={() => handleToolClick(tool.name)}
       key={tool.id}
-      selected={selectedIndex === index}
+      selected={selectedTool === tool.name}
     >
       <Icon src={tool.src} alt={tool.name} />
     </Button>

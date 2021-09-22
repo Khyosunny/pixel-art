@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { black } from 'styles/colors';
 import Palette from 'components/Sidebar/Palette';
@@ -7,12 +8,19 @@ import { SaveButton } from 'components/Buttons';
 interface SidebarProps {
   color: string;
   handleColorChange: (color: string) => void;
+  selectedTool: string;
+  setSelectedTool: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function Sidebar({ color, handleColorChange }: SidebarProps) {
+export default function Sidebar({
+  color,
+  handleColorChange,
+  selectedTool,
+  setSelectedTool,
+}: SidebarProps) {
   return (
     <Container>
-      <Tool />
+      <Tool selectedTool={selectedTool} setSelectedTool={setSelectedTool} />
       <Palette color={color} handleColorChange={handleColorChange} />
       <SaveButton />
     </Container>
