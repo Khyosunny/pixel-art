@@ -11,6 +11,8 @@ interface SidebarProps {
   selectedTool: string;
   setSelectedTool: React.Dispatch<React.SetStateAction<string>>;
   saveCanvasImg: () => void;
+  pixelQt: string;
+  CANVAS_SIZE: string;
 }
 
 export default function Sidebar({
@@ -19,12 +21,20 @@ export default function Sidebar({
   selectedTool,
   setSelectedTool,
   saveCanvasImg,
+  pixelQt,
+  CANVAS_SIZE,
 }: SidebarProps) {
   return (
     <Container>
       <Tool selectedTool={selectedTool} setSelectedTool={setSelectedTool} />
       <Palette color={color} handleColorChange={handleColorChange} />
       <SaveButton saveCanvasImg={saveCanvasImg} />
+      <Info>
+        <InfoText>pixel: {pixelQt}</InfoText>
+        <InfoText>
+          canvas size: {CANVAS_SIZE}px X {CANVAS_SIZE}px
+        </InfoText>
+      </Info>
     </Container>
   );
 }
@@ -36,4 +46,15 @@ const Container = styled.div`
   background-color: ${black[500]};
   display: flex;
   flex-direction: column;
+`;
+
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  margin: 20px;
+`;
+
+const InfoText = styled.p`
+  color: white;
 `;

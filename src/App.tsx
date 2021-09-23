@@ -63,6 +63,8 @@ export default function App() {
         selectedTool={selectedTool}
         setSelectedTool={setSelectedTool}
         saveCanvasImg={saveCanvasImg}
+        pixelQt={pixelQt}
+        CANVAS_SIZE={CANVAS_SIZE}
       />
     </Container>
   );
