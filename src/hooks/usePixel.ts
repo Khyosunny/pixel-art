@@ -39,7 +39,6 @@ export default function usePixel(
           const rgb = context.getImageData(x, y, 1, 1).data;
           const hex =
             '#' + ('000000' + rgbToHex(rgb[0], rgb[1], rgb[2])).slice(-6);
-          console.log('hex', hex);
           handleColorChange(hex);
         }
       }

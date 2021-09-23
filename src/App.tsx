@@ -25,12 +25,7 @@ export default function App() {
     () => CANVAS_SIZE / pixelQt,
     [CANVAS_SIZE, pixelQt]
   );
-  console.log(
-    Math.floor(CANVAS_SIZE / pixelQt),
-    PIXEL_SIZE,
-    'CANVAS_SIZE: ',
-    CANVAS_SIZE
-  );
+
   const { color, handleColorChange } = useColor();
 
   const handlePixelChange = useCallback((pixel: number) => {
