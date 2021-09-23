@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { rgbToHex } from 'util/rgbToHex';
 
 export default function usePixel(
@@ -43,7 +43,7 @@ export default function usePixel(
         }
       }
     },
-    [color, PIXEL_SIZE, selectedTool, handleColorChange]
+    [canvasRef, color, PIXEL_SIZE, selectedTool, handleColorChange]
   );
 
   const startDrawing = useCallback(
