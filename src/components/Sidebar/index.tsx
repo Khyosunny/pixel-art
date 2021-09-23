@@ -11,8 +11,8 @@ interface SidebarProps {
   selectedTool: string;
   setSelectedTool: React.Dispatch<React.SetStateAction<string>>;
   saveCanvasImg: () => void;
-  pixelQt: string;
-  CANVAS_SIZE: string;
+  pixelQt: number;
+  CANVAS_SIZE: number;
 }
 
 export default function Sidebar({
