@@ -4,6 +4,7 @@ import { black } from 'styles/colors';
 import Palette from 'components/Sidebar/Palette';
 import Tool from 'components/Sidebar/Tool';
 import { SaveButton } from 'components/Buttons';
+import Select from 'components/Select';
 
 interface SidebarProps {
   color: string;
@@ -13,6 +14,7 @@ interface SidebarProps {
   saveCanvasImg: () => void;
   pixelQt: number;
   CANVAS_SIZE: number;
+  handlePixelChange: (pixel: number) => void;
 }
 
 export default function Sidebar({
@@ -23,9 +25,11 @@ export default function Sidebar({
   saveCanvasImg,
   pixelQt,
   CANVAS_SIZE,
+  handlePixelChange,
 }: SidebarProps) {
   return (
     <Container>
+      <Select pixelQt={pixelQt} handlePixelChange={handlePixelChange} />
       <Tool selectedTool={selectedTool} setSelectedTool={setSelectedTool} />
       <Palette color={color} handleColorChange={handleColorChange} />
       <SaveButton saveCanvasImg={saveCanvasImg} />

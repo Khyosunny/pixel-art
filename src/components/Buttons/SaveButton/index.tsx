@@ -17,7 +17,7 @@ export default function SaveButton({ saveCanvasImg }: SaveButtonProps) {
 const Button = styled.button`
   padding: 20px 20px;
   font-size: 24px;
-  color: #fff;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +32,7 @@ const Button = styled.button`
       width: 30px;
       height: 30px;
     }
-    fill: #fff;
+    fill: white;
     margin-right: 10px;
   }
 `;

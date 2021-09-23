@@ -9,7 +9,7 @@ export default function MenuTitle({ title }: MenuTitleProps) {
 }
 
 const Title = styled.h2`
-  color: #fff;
+  color: white;
   font-size: 18px;
   font-weight: 500;
   margin: 5px;

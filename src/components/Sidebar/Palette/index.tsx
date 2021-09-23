@@ -54,7 +54,7 @@ const CurrentColor = styled.div<StyleProps>`
 `;
 
 const ColorText = styled.p`
-  color: #fff;
+  color: white;
   font-weight: 600;
   font-size: 24px;
   text-shadow: -1px 0 ${black[400]}, 0 1px ${black[400]}, 1px 0 ${black[400]},
@@ -99,7 +99,7 @@ const ColorRect = styled.div<StyleProps>`
         transform: translate(-50%, -50%);
         width: 18px;
         height: 18px;
-        border: 4px solid #fff;
+        border: 4px solid white;
       }
 
       &::before {
@@ -125,7 +125,7 @@ const ColorRect = styled.div<StyleProps>`
       transform: translate(-50%, -50%);
       width: 18px;
       height: 18px;
-      border: 4px solid #fff;
+      border: 4px solid white;
     }
 
     &::before {

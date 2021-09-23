@@ -33,6 +33,10 @@ export default function App() {
   );
   const { color, handleColorChange } = useColor();
 
+  const handlePixelChange = useCallback((pixel: number) => {
+    setPixelQt(pixel);
+  }, []);
+
   const saveCanvasImg = useCallback(() => {
     if (canvasRef.current) {
       const dataURL = canvasRef.current.toDataURL();
@@ -65,6 +69,7 @@ export default function App() {
         saveCanvasImg={saveCanvasImg}
         pixelQt={pixelQt}
         CANVAS_SIZE={CANVAS_SIZE}
+        handlePixelChange={handlePixelChange}
       />
     </Container>
   );
